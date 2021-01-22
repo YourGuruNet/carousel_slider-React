@@ -1,52 +1,53 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import image1 from './images/image1.jpg';
 import image2 from './images/image2.jpg';
 import image3 from './images/image3.jpg';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => {
+  const [image, setImage] = React.useState(1);
 
-    this.state = {
-      image: 1,
-    };
+  let imageShowed;
+  if (image === 1) {
+    imageShowed = image1;
+  } else if (image === 2) {
+    imageShowed = image2;
+  } else {
+    imageShowed = image3;
   }
+  const ChangeImageDots = (index) => {
+    setImage(index);
+  };
+  const NextImage = () => {
+    image === 3 ? setImage(1) : setImage(image + 1);
+  };
 
-  render() {
-    let image;
-    if (this.state.image === 1) {
-      image = image1;
-    } else if (this.state.image === 2) {
-      image = image2;
-    } else {
-      image = image3;
-    }
-    const ChangeImageDots = (index) => {
-      this.setState({
-        image: index,
-      });
-    };
-    return (
-      <Section>
-        <div className='slideshow-container'>
-          <div className='fade'>
-            <img src={image} style={{ width: '100%' }} />
-          </div>
-          <a className='prev'>&#10094;</a>
-          <a className='next'>&#10095;</a>
+  const PrevImage = () => {
+    image === 1 ? setImage(3) : setImage(image - 1);
+  };
+  return (
+    <Section>
+      <div className='slideshow-container'>
+        <div className='fade'>
+          <img src={imageShowed} style={{ width: '100%' }} />
         </div>
-        <br />
+        <button className='prev' onClick={PrevImage}>
+          &#10094;
+        </button>
+        <button className='next' onClick={NextImage}>
+          &#10095;
+        </button>
+      </div>
+      <br />
 
-        <div style={{ textAlign: 'center' }}>
-          <span className='dot' onClick={() => ChangeImageDots(1)}></span>
-          <span className='dot' onClick={() => ChangeImageDots(2)}></span>
-          <span className='dot' onClick={() => ChangeImageDots(3)}></span>
-        </div>
-      </Section>
-    );
-  }
-}
+      <div style={{ textAlign: 'center' }}>
+        <span className='dot' onClick={() => ChangeImageDots(1)}></span>
+        <span className='dot' onClick={() => ChangeImageDots(2)}></span>
+        <span className='dot' onClick={() => ChangeImageDots(3)}></span>
+      </div>
+    </Section>
+  );
+};
 
 export default App;
 
