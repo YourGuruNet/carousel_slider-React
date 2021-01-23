@@ -45,7 +45,7 @@ const App = () => {
 
   return (
     <Section>
-      <div className='slideshow-container'>
+      <div className='slideshow_container'>
         <div>
           <img className='slider_image' src={images[image]} alt='slider' />
           <h1 className='slider_title'>{quotes[image]}</h1>
@@ -83,7 +83,7 @@ const Section = styled.div`
   overflow: hidden;
   position: relative;
   box-shadow: 0.5rem 0.5rem 2rem 0.5rem rgba(59, 59, 59, 0.737);
-  .slideshow-container {
+  .slideshow_container {
     max-height: 60rem;
     position: relative;
     margin: auto;
