@@ -1,32 +1,32 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import image1 from './images/image1.jpg';
 import image2 from './images/image2.jpg';
 import image3 from './images/image3.jpg';
 import image4 from './images/image4.jpg';
 
+let interval;
+let quote1 = 'Jobs fill your pockets, adventures fill your soul';
+let quote2 = 'Travel is the only thing you buy that makes you richer';
+let quote3 = 'Work, Travel, Save, Repeat';
+let quote4 = 'Once a year, go someplace you’ve never been before';
+
+const images = [image1, image2, image3, image4];
+const quotes = [quote1, quote2, quote3, quote4];
 const App = () => {
   //Image is displayed
-  const [image, setImage] = React.useState(1);
-  let quote1 = 'Jobs fill your pockets, adventures fill your soul';
-  let quote2 = 'Travel is the only thing you buy that makes you richer';
-  let quote3 = 'Work, Travel, Save, Repeat';
-  let quote4 = 'Once a year, go someplace you’ve never been before';
-  let imageShowed;
-  let quoteShowed;
-  if (image === 1) {
-    imageShowed = image1;
-    quoteShowed = quote1;
-  } else if (image === 2) {
-    imageShowed = image2;
-    quoteShowed = quote2;
-  } else if (image === 3) {
-    imageShowed = image3;
-    quoteShowed = quote3;
-  } else {
-    imageShowed = image4;
-    quoteShowed = quote4;
-  }
+  const [image, setImage] = React.useState(0);
+
+  // Auto change slide interval
+  useEffect(() => {
+    interval = setInterval(() => {
+      image === 3 ? setImage(1) : setImage(image + 1);
+      clearInterval(interval.current);
+    }, 5000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [image]);
 
   // Change image functionality
   const ChangeImage = (index) => {
@@ -34,38 +34,20 @@ const App = () => {
   };
   //Next image
   const NextImage = () => {
-    image === 4 ? setImage(1) : setImage(image + 1);
+    image === 3 ? setImage(1) : setImage(image + 1);
   };
 
   // Previous image
   const PrevImage = () => {
-    image === 1 ? setImage(4) : setImage(image - 1);
+    image === 1 ? setImage(3) : setImage(image - 1);
   };
-
-  // Auto change slide interval
-  const interval = useRef(null);
-  const timeout = useRef(null);
-  useEffect(() => {
-    interval.current = setInterval(
-      () => (image === 4 ? setImage(1) : setImage((i) => i + 1)),
-      5000
-    );
-    timeout.current = setTimeout(() => {
-      clearInterval(interval.current);
-    }, 5000);
-
-    return () => {
-      clearInterval(interval.current);
-      clearTimeout(timeout.current);
-    };
-  }, [image]);
 
   return (
     <Section>
       <div className='slideshow-container'>
         <div>
-          <img className='slider_image' src={imageShowed} alt='slider' />
-          <h1 className='slider_title'>{quoteShowed}</h1>
+          <img className='slider_image' src={images[image]} alt='slider' />
+          <h1 className='slider_title'>{quotes[image]}</h1>
         </div>
         <button className='prev' onClick={PrevImage}>
           &#10094;
@@ -75,26 +57,17 @@ const App = () => {
         </button>
       </div>
       <div>
-        <img
-          src={image1}
-          className='bottom_image'
-          onClick={() => ChangeImage(1)}
-        ></img>
-        <img
-          src={image2}
-          className='bottom_image'
-          onClick={() => ChangeImage(2)}
-        ></img>
-        <img
-          src={image3}
-          className='bottom_image'
-          onClick={() => ChangeImage(3)}
-        ></img>
-        <img
-          src={image4}
-          className='bottom_image'
-          onClick={() => ChangeImage(4)}
-        ></img>
+        <div>
+          {images.map((image, i) => (
+            <img
+              key={i}
+              alt={`slider${i}`}
+              src={image}
+              className='bottom_image'
+              onClick={() => ChangeImage(i)}
+            ></img>
+          ))}
+        </div>
       </div>
     </Section>
   );
@@ -108,7 +81,7 @@ const Section = styled.div`
   margin: 0 auto;
   overflow: hidden;
   position: relative;
-  box-shadow: 1rem 0.2rem 2rem 0.5rem rgba(255, 255, 255, 0.364);
+  box-shadow: 0.5rem 0.5rem 2rem 0.5rem rgba(59, 59, 59, 0.737);
   .slideshow-container {
     max-height: 60rem;
     position: relative;
