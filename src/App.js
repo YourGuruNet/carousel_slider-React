@@ -5,8 +5,8 @@ import image2 from './images/image2.jpg';
 import image3 from './images/image3.jpg';
 
 const App = () => {
+  //Which image is displayed
   const [image, setImage] = React.useState(1);
-
   let imageShowed;
   if (image === 1) {
     imageShowed = image1;
@@ -15,21 +15,35 @@ const App = () => {
   } else {
     imageShowed = image3;
   }
+
+  // Dots functionality
   const ChangeImageDots = (index) => {
     setImage(index);
   };
+  //Next image
   const NextImage = () => {
     image === 3 ? setImage(1) : setImage(image + 1);
   };
 
+  // Previous image
   const PrevImage = () => {
     image === 1 ? setImage(3) : setImage(image - 1);
   };
+
+  // Auto change slide interval
+  let interval = setInterval(
+    () => (image === 3 ? setImage(1) : setImage(image + 1)),
+    4000
+  );
+  setTimeout(() => {
+    clearInterval(interval);
+  }, 4000);
+
   return (
     <Section>
       <div className='slideshow-container'>
         <div className='fade'>
-          <img src={imageShowed} style={{ width: '100%' }} />
+          <img src={imageShowed} style={{ width: '100%' }} alt='slider' />
         </div>
         <button className='prev' onClick={PrevImage}>
           &#10094;
