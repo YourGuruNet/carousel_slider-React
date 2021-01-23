@@ -5,8 +5,6 @@ import image2 from './images/image2.jpg';
 import image3 from './images/image3.jpg';
 import image4 from './images/image4.jpg';
 
-let interval;
-
 const images = [image1, image2, image3, image4];
 const quotes = [
   'Jobs fill your pockets, adventures fill your soul',
@@ -20,12 +18,13 @@ const App = () => {
 
   // Auto change slide interval
   useEffect(() => {
-    interval = setInterval(() => {
-      image === 3 ? setImage(1) : setImage(image + 1);
-      clearInterval(interval.current);
-    }, 5000);
     return () => {
-      clearInterval(interval);
+      clearInterval(
+        setInterval((interval) => {
+          image === 3 ? setImage(1) : setImage(image + 1);
+          clearInterval(interval.current);
+        }, 5000)
+      );
     };
   }, [image]);
 
@@ -33,6 +32,7 @@ const App = () => {
   const ChangeImage = (index) => {
     setImage(index);
   };
+
   //Next image
   const NextImage = () => {
     image === 3 ? setImage(1) : setImage(image + 1);
