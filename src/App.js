@@ -6,13 +6,14 @@ import image3 from './images/image3.jpg';
 import image4 from './images/image4.jpg';
 
 let interval;
-let quote1 = 'Jobs fill your pockets, adventures fill your soul';
-let quote2 = 'Travel is the only thing you buy that makes you richer';
-let quote3 = 'Work, Travel, Save, Repeat';
-let quote4 = 'Once a year, go someplace you’ve never been before';
 
 const images = [image1, image2, image3, image4];
-const quotes = [quote1, quote2, quote3, quote4];
+const quotes = [
+  'Jobs fill your pockets, adventures fill your soul',
+  'Travel is the only thing you buy that makes you richer',
+  'Work, Travel, Save, Repeat',
+  'Once a year, go someplace you’ve never been before',
+];
 const App = () => {
   //Image is displayed
   const [image, setImage] = React.useState(0);
