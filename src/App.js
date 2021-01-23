@@ -18,14 +18,6 @@ const App = () => {
   } else {
     imageShowed = image4;
   }
-  // Auto change slide interval
-  let interval = setInterval(
-    () => (image === 4 ? setImage(1) : setImage(image + 1)),
-    5000
-  );
-  setTimeout(() => {
-    clearInterval(interval);
-  }, 5000);
 
   // Change image functionality
   const ChangeImage = (index) => {
@@ -40,6 +32,24 @@ const App = () => {
   const PrevImage = () => {
     image === 1 ? setImage(4) : setImage(image - 1);
   };
+
+  // Auto change slide interval
+  const interval = useRef(null);
+  const timeout = useRef(null);
+  useEffect(() => {
+    interval.current = setInterval(
+      () => (image === 4 ? setImage(1) : setImage((i) => i + 1)),
+      5000
+    );
+    timeout.current = setTimeout(() => {
+      clearInterval(interval.current);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval.current);
+      clearTimeout(timeout.current);
+    };
+  }, [image]);
 
   return (
     <Section>
