@@ -63,7 +63,7 @@ const App = () => {
   return (
     <Section>
       <div className='slideshow-container'>
-        <div className='fade'>
+        <div>
           <img className='slider_image' src={imageShowed} alt='slider' />
           <h1 className='slider_title'>{quoteShowed}</h1>
         </div>
@@ -175,29 +175,28 @@ const Section = styled.div`
     }
   }
 
-  /* Fading animation */
-  .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
-
-  @-webkit-keyframes fade {
-    from {
-      opacity: 0.4;
+  @media screen and (max-width: 43.75em) {
+    .slider_title {
+      text-align: center;
+      font-size: 3rem;
     }
-    to {
-      opacity: 1;
+
+    .bottom_image {
+      height: 10rem;
     }
   }
 
-  @keyframes fade {
-    from {
-      opacity: 0.4;
+  @media screen and (max-width: 25em) {
+    .slider_title {
+      margin: 3rem;
+      font-size: 2rem;
     }
-    to {
-      opacity: 1;
+
+    .bottom_image {
+      padding: 0.5rem;
+      cursor: pointer;
+      height: 6rem;
+      width: 25%;
     }
   }
 `;
