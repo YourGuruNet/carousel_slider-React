@@ -8,15 +8,24 @@ import image4 from './images/image4.jpg';
 const App = () => {
   //Image is displayed
   const [image, setImage] = React.useState(1);
+  let quote1 = 'Jobs fill your pockets, adventures fill your soul';
+  let quote2 = 'Travel is the only thing you buy that makes you richer';
+  let quote3 = 'Work, Travel, Save, Repeat';
+  let quote4 = 'Once a year, go someplace you’ve never been before';
   let imageShowed;
+  let quoteShowed;
   if (image === 1) {
     imageShowed = image1;
+    quoteShowed = quote1;
   } else if (image === 2) {
     imageShowed = image2;
+    quoteShowed = quote2;
   } else if (image === 3) {
     imageShowed = image3;
+    quoteShowed = quote3;
   } else {
     imageShowed = image4;
+    quoteShowed = quote4;
   }
 
   // Change image functionality
@@ -56,9 +65,7 @@ const App = () => {
       <div className='slideshow-container'>
         <div className='fade'>
           <img className='slider_image' src={imageShowed} alt='slider' />
-          <h1 className='slider_title'>
-            Jobs fill your pockets, adventures fill your soul.
-          </h1>
+          <h1 className='slider_title'>{quoteShowed}</h1>
         </div>
         <button className='prev' onClick={PrevImage}>
           &#10094;
