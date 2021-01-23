@@ -15,7 +15,7 @@ body {
   font-family: 'Oswald', sans-serif;
   min-height: 100vh;
   width: 100%;
-  margin: 0 auto;
-  background-color: var(--baseColor);
+  margin: 2rem auto;
+  background-color: black;
   color: var(--baseColor-Light-2);
 }

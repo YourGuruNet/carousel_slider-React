@@ -55,13 +55,10 @@ const App = () => {
     <Section>
       <div className='slideshow-container'>
         <div className='fade'>
-          <img
-            className='slider_image'
-            src={imageShowed}
-            style={{ width: '100%' }}
-            alt='slider'
-          />
-          <h1 className='slider_title'>this is my title</h1>
+          <img className='slider_image' src={imageShowed} alt='slider' />
+          <h1 className='slider_title'>
+            Jobs fill your pockets, adventures fill your soul.
+          </h1>
         </div>
         <button className='prev' onClick={PrevImage}>
           &#10094;
@@ -70,9 +67,7 @@ const App = () => {
           &#10095;
         </button>
       </div>
-      <br />
-
-      <div style={{ textAlign: 'center' }}>
+      <div>
         <img
           src={image1}
           className='bottom_image'
@@ -102,24 +97,30 @@ export default App;
 
 const Section = styled.div`
   max-width: 140rem;
-  max-height: 70rem;
+  max-height: 60rem;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
+  box-shadow: 1rem 0.2rem 2rem 0.5rem rgba(255, 255, 255, 0.364);
   .slideshow-container {
     max-height: 60rem;
     position: relative;
     margin: auto;
   }
   .slider_image {
-    max-width: 100%;
-    max-height: 50rem;
+    width: 100%;
+    max-height: 40rem;
     object-fit: cover;
   }
   .slider_title {
     position: absolute;
     top: 0;
     color: white;
+    margin: 3rem;
+    font-size: 4rem;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.658);
+    padding: 0.5rem;
   }
   .prev,
   .next {
@@ -150,16 +151,21 @@ const Section = styled.div`
   }
 
   .bottom_image {
+    padding: 0.5rem;
     cursor: pointer;
-    height: 15rem;
+    height: 18rem;
     width: 25%;
     display: inline-block;
     object-fit: cover;
-    transition: background-color 0.6s ease;
-  }
-  .active,
-  .dot:hover {
-    background-color: #717171;
+    transition: all 0.6s ease;
+    opacity: 0.5;
+
+    :hover {
+      opacity: 1;
+      transform: scale(1.1) translateY(0.6rem);
+      z-index: 99;
+      position: relative;
+    }
   }
 
   /* Fading animation */
