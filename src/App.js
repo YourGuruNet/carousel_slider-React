@@ -49,10 +49,10 @@ const App = () => {
           <img className='slider_image' src={images[image]} alt='slider' />
           <h1 className='slider_title'>{quotes[image]}</h1>
         </div>
-        <button className='prev' onClick={PrevImage}>
+        <button className='slider_prev' onClick={PrevImage}>
           &#10094;
         </button>
-        <button className='next' onClick={NextImage}>
+        <button className='slider_next' onClick={NextImage}>
           &#10095;
         </button>
       </div>
@@ -102,8 +102,8 @@ const Section = styled.div`
     background-color: rgba(0, 0, 0, 0.658);
     padding: 0.5rem;
   }
-  .prev,
-  .next {
+  .slider_prev,
+  .slider_next {
     cursor: pointer;
     position: absolute;
     background-color: transparent;
@@ -121,12 +121,12 @@ const Section = styled.div`
     user-select: none;
   }
 
-  .next {
+  .slider_next {
     right: 0;
     border-radius: 0.3rem 0 0 0.3rem;
   }
-  .prev:hover,
-  .next:hover {
+  .slider_prev:hover,
+  .slider_next:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
 
